@@ -1,10 +1,10 @@
 # Title of Game
 
-Explanation of the game that was built and the deployed link will go here.
+Space Invaders 
 
 # HOW TO PLAY
 
-How to play the game goes here
+Move and Shoot
 
 ## Start Up Screen:
 Images of the start up screen go here 
@@ -32,7 +32,7 @@ Future considerations or stretch goals go here.
 # PROCESS WORK
 
 ## Initial Wireframes:
-Initial Wireframes go here ( images )
+
 
 ## Scratch Work:
 
