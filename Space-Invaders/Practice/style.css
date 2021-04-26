@@ -1,11 +1,18 @@
 .grid {
     display: flex;
-    border: solid 1px;
+    flex-wrap: wrap;
+    border: solid black 5px;
     width: 600px;
     height: 400px;
 }
 
 .grid div {
-    width: 10px;
-    height: 10px;
+    width: 30px;
+    height: 20px;
 }
+
+.enemy {
+	background-color: gray;
+    
+}
+
