@@ -1,0 +1,11 @@
+.grid {
+    display: flex;
+    border: solid 1px;
+    width: 600px;
+    height: 400px;
+}
+
+.grid div {
+    width: 10px;
+    height: 10px;
+}
