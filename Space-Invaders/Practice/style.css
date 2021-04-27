@@ -21,6 +21,11 @@
 
 }
 
+.motherShip {
+    background-color: black;
+    border-top: solid white 5px;
+}
+
 .invader {
 	background-color: blue;
     border-top: solid white 5px;

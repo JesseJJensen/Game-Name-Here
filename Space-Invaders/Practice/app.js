@@ -8,22 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let result = 0
     let directionMovement = 1 
     let invaderId 
+    let motherShipId
     
 
-  
-    const alienInvaders = [
-        0,//2,4,6,8,
-        // 15,17,19,21,23,  
-        // 30,32,34,36,38,
-        // 45,47,49,51,53,
-        // 60,62,64,66,68, 
+    const enemyInvaderMotherShip = [8,9,10]
+    const enemyInvaders = [
+        // 0,2,4,6,8,
+        //15,17,19,21,23,  
+        //30,32,34,36,38,
+        //45,47,49,51,53,
+        60,62,64,66,68, 
         // 75,77,79,81,83,
         // 90,92,94,96,98,
         // 105,107,109,111,113
     ]
 
-
-        alienInvaders.forEach( invader => boxes[enemyLocation + invader].classList.add('invader'))
+    enemyInvaderMotherShip.forEach( invader => boxes[enemyLocation + invader].classList.add('motherShip'))
+        enemyInvaders.forEach( invader => boxes[enemyLocation + invader].classList.add('invader'))
 
 
         boxes[playerOneLocation].classList.add('shooter')
@@ -39,17 +40,64 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(playerOneLocation % screenWidth < screenWidth -1) playerOneLocation +=1
                     break
                 case 38:
-                    if(playerOneLocation % screenWidth !== 0) playerOneLocation -=1
+                    boxes[playerOneLocation].classList.remove('shooter')
+                    playerOneLocation -= screenWidth
+                    break
+                case 40:
+                    boxes[playerOneLocation].classList.remove('shooter')
+                    playerOneLocation += screenWidth
                     break
                 }
                 boxes[playerOneLocation].classList.add('shooter')
         }
             document.addEventListener('keydown', moveShooter)
 
+            // function moveMotherShip() {
+            //     const leftEdge = enemyInvaderMotherShip[0] % screenWidth === 0
+            //     const rightEdge = enemyInvaderMotherShip[enemyInvaderMotherShip.length -1] % screenWidth === screenWidth -1
 
+            //     if((leftEdge && directionMovement === -1) || (rightEdge && directionMovement === 1)){
+            //         directionMovement = screenWidth
+            //     } else if (directionMovement === screenWidth) {
+            //         if (leftEdge) directionMovement = 1
+            //         else directionMovement = -1
+            //     }
+            //     for (let i = 0; i <= enemyInvaderMotherShip.length -1; i++) {
+            //         boxes[enemyInvaderMotherShip[i]].classList.remove('motherShip')
+            //     }
+            //     for (let i = 0; i <= enemyInvaderMotherShip.length -1; i++) {
+            //         enemyInvaderMotherShip[i] += directionMovement
+            //     }
+            //     for (let i = 0; i <= enemyInvaderMotherShip.length -1; i++) {
+            //         if (!enemysKilled.includes(i)) {
+            //             boxes[enemyInvaderMotherShip[i]].classList.add('motherShip')
+            //         }
+            //     }
+
+            //     if(boxes[playerOneLocation].classList.contains('motherShip', 'shooter')) {
+            //         confirmedKills.textContent = 'Game Over'
+            //         boxes[playerOneLocation].classList.add('boom')
+            //         clearInterval(motherShipId)
+            //     }
+        
+            //     for (let i = 0; i <= enemyInvaders.length -1; i++) {
+            //         if(enemyInvaders[i] > (boxes.length - (screenWidth-1))) {
+            //             confirmedKills.textContent = 'Game Over'
+            //             clearInterval(motherShipId)
+            //         }
+            //     }
+
+
+            //     if (enemysKilled.length === enemyInvaders.length) {
+            //         confirmedKills.textContent = 'You Win'
+            //         clearInterval(motherShipId)
+            //     }
+
+
+            // }
             function moveInvaders() {
-                const leftEdge = alienInvaders[0] % screenWidth === 0
-                const rightEdge = alienInvaders[alienInvaders.length -1] % screenWidth === screenWidth -1
+                const leftEdge = enemyInvaders[0] % screenWidth === 0
+                const rightEdge = enemyInvaders[enemyInvaders.length -1] % screenWidth === screenWidth -1
         
                 if((leftEdge && directionMovement === -1) || (rightEdge && directionMovement === 1)){
                     directionMovement = screenWidth
@@ -57,15 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (leftEdge) directionMovement = 1
                     else directionMovement = -1
                 }
-                for (let i = 0; i <= alienInvaders.length -1; i++) {
-                    boxes[alienInvaders[i]].classList.remove('invader')
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                    boxes[enemyInvaders[i]].classList.remove('invader')
                 }
-                for (let i = 0; i <= alienInvaders.length -1; i++) {
-                    alienInvaders[i] += directionMovement
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                    enemyInvaders[i] += directionMovement
                 }
-                for (let i = 0; i <= alienInvaders.length -1; i++) {
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
                     if (!enemysKilled.includes(i)) {
-                        boxes[alienInvaders[i]].classList.add('invader')
+                        boxes[enemyInvaders[i]].classList.add('invader')
                     }
                 }
         
@@ -76,22 +124,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearInterval(invaderId)
                 }
         
-                for (let i = 0; i <= alienInvaders.length -1; i++) {
-                    if(alienInvaders[i] > (boxes.length - (screenWidth-1))) {
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                    if(enemyInvaders[i] > (boxes.length - (screenWidth-1))) {
                         confirmedKills.textContent = 'Game Over'
                         clearInterval(invaderId)
                     }
                 }
 
 
-                if (enemysKilled.length === alienInvaders.length) {
+                if (enemysKilled.length === enemyInvaders.length) {
                     confirmedKills.textContent = 'You Win'
                     clearInterval(invaderId)
                 }
             }
-            invaderId = setInterval(moveInvaders, 500)
-
-
+            invaderId = setInterval(moveInvaders, 75)
+            motherShipId = setInterval(moveMotherShip, 75 )
             
             function shoot(e) {
                 let laserId
@@ -109,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => boxes[currentLaserIndex].classList.remove('boom'), 250)
                         clearInterval(laserId)
 
-                        const alienTakenDown = alienInvaders.indexOf(currentLaserIndex)
+                        const alienTakenDown = enemyInvaders.indexOf(currentLaserIndex)
                         enemysKilled.push(alienTakenDown)
                         result++
                         confirmedKills.textContent = result 
@@ -129,23 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         document.addEventListener('keyup', shoot)
     })
-
-
-    sprite = [document.getElementById("sprite0"),
-            null,
-            document.getElementById("sprite2"),
-            document.getElementById("sprite3"),
-            document.getElementById("sprite4"),
-            document.getElementById("sprite5"),
-            document.getElementById("sprite6")]
-  spriteBits = [
-    [0x99, 0x99, 0x99, 0xe7, 0xc3, 0xc3, 0xc3, 0xc3],  // Ship
-    [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
-    [0x00, 0x00, 0x42, 0xa5, 0x42, 0x00, 0x00, 0x00],  // Rockets
-    [0x18, 0x42, 0xe7, 0xbd, 0x5a, 0x24, 0x3c, 0x66],  // Freighter
-    [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],  // Explosion
-    [0x00, 0x10, 0x38, 0x7c, 0x7c, 0x38, 0x10, 0x00]   // Status Beam
-  ]
 
     
 
