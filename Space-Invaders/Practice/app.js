@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {    //created DOM event listener all JS code will go in here
-    const boxes = document.querySelectorAll('.grid div') // created query selector  for div's 
+    const grid = document.querySelector('.grid') // created query selector  for div's 
     const confirmedKills = document.querySelector('#result') //Using # for Id instead of dot
     let screenWidth = 30 // Let js know we want width of grid to be 15
     let playerOneLocation = 404 // this is where player 1 shooter will start
@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     let motherShipDirectionMovement = 1 // tells mother ship how many spaces it can move
     let invaderId 
     let motherShipId
+
+
+    for (let i = 0; i < 420; i++) {
+        const square = document.createElement('div')
+        grid.appendChild(square)
+      }
+      
+      const boxes = Array.from(document.querySelectorAll('.grid div'))
     
     //Defines the enemy invdaders on how they will appear in the array
     const enemyInvaderMotherShip = [0]
@@ -19,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
         //15,17,19,21,23,  
         //30,32,34,36,38,
         //45,47,49,51,53,
-        60,//62,64,66,68, 
+        60,62,64,66,68, 
         // 75,77,79,81,83,
         // 90,92,94,96,98,
         // 105,107,109,111,113
@@ -27,8 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     // draws enemy invaders- for each item in the array we will call invader 
     // I will pass this through the squares and any current index value there might be; 0 in this case
     // Then add a class list to that square. This will pull mothership and invader style from css 
-    enemyInvaderMotherShip.forEach( invader => boxes[enemyMotherShipLocation + invader].classList.add('motherShip'))
-    enemyInvaders.forEach( invader => boxes[enemyLocation + invader].classList.add('invader'))
+    
+    function draw() {
+        for (let i = 0; i < enemyInvaders.length; i++) {
+          if(!aliensRemoved.includes(i)) {
+            boxes[enemyInvaders[i]].classList.add('invader')
+          }
+        }
+      }
+
+    function remove() {
+        for (let i = 0; i < enemyInvaders.length; i++) {
+          boxes[enemyInvaders[i]].classList.remove('invader')
+        }
+    }
+
+    // enemyInvaderMotherShip.forEach( invader => boxes[enemyMotherShipLocation + invader].classList.add('motherShip'))
+    // enemyInvaders.forEach( invader => boxes[enemyLocation + invader].classList.add('invader'))
 
     // function getRandomInt(min, max) {
     //     min = Math.ceil(min);
@@ -106,51 +129,51 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
              }
 
 
-            // // move enemy invaders
-            // function moveInvaders() { // need to define left edge and right edge 
-            //     const leftEdge = enemyInvaders[0] % screenWidth === 0
-            //     const rightEdge = enemyInvaders[enemyInvaders.length -1] % screenWidth === screenWidth -1
-            //     // if on left edge and direction = -1 or at right edge and direction is +1 ===> then set direction to screen width to drop down 1 row  
-            //     if((leftEdge && directionMovement === -1) || (rightEdge && directionMovement === 1)){
-            //         directionMovement = screenWidth
-            //     } else if (directionMovement === screenWidth) {// if directions already screenwidth  we carry on w/ same logic above so if you hit left edge change direction to +1
-            //         if (leftEdge) directionMovement = 1
-            //         else directionMovement = -1
-            //     } // loop over enemy array to move enemy invaders
-            //     for (let i = 0; i <= enemyInvaders.length -1; i++) {
-            //         boxes[enemyInvaders[i]].classList.remove('invader')
-            //     } // loop over again to add new direction to all items in array
-            //     for (let i = 0; i <= enemyInvaders.length -1; i++) {
-            //         enemyInvaders[i] += directionMovement
-            //     } //loop over again to add class of invader to the new location of all items in array
-            //     for (let i = 0; i <= enemyInvaders.length -1; i++) {
-            //         if (!enemysKilled.includes(i)) {
-            //             boxes[enemyInvaders[i]].classList.add('invader')
-            //         }
-            //     }
+            // move enemy invaders
+            function moveInvaders() { // need to define left edge and right edge 
+                const leftEdge = enemyInvaders[0] % screenWidth === 0
+                const rightEdge = enemyInvaders[enemyInvaders.length -1] % screenWidth === screenWidth -1
+                // if on left edge and direction = -1 or at right edge and direction is +1 ===> then set direction to screen width to drop down 1 row  
+                if((leftEdge && directionMovement === -1) || (rightEdge && directionMovement === 1)){
+                    directionMovement = screenWidth
+                } else if (directionMovement === screenWidth) {// if directions already screenwidth  we carry on w/ same logic above so if you hit left edge change direction to +1
+                    if (leftEdge) directionMovement = 1
+                    else directionMovement = -1
+                } // loop over enemy array to move enemy invaders
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                    boxes[enemyInvaders[i]].classList.remove('invader')
+                } // loop over again to add new direction to all items in array
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                    enemyInvaders[i] += directionMovement
+                } //loop over again to add class of invader to the new location of all items in array
+                for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                    if (!enemysKilled.includes(i)) {
+                        boxes[enemyInvaders[i]].classList.add('invader')
+                    }
+                }
         
 
-            //     if(boxes[playerOneLocation].classList.contains('invader', 'shooter')) {
-            //         confirmedKills.textContent = 'Game Over'
-            //         boxes[playerOneLocation].classList.add('boom')
-            //         clearInterval(invaderId)
-            //     }
+                if(boxes[playerOneLocation].classList.contains('invader', 'shooter')) {
+                    confirmedKills.textContent = 'Game Over'
+                    boxes[playerOneLocation].classList.add('boom')
+                    clearInterval(invaderId)
+                }
         
-            //     for (let i = 0; i <= enemyInvaders.length -1; i++) {
-            //         if(enemyInvaders[i] > (boxes.length - (screenWidth-1))) {
-            //             confirmedKills.textContent = 'Game Over'
-            //             clearInterval(invaderId)
-            //         }
-            //     }
+                // for (let i = 0; i <= enemyInvaders.length -1; i++) {
+                //     if(enemyInvaders[i] > (boxes.length - (screenWidth-1))) {
+                //         confirmedKills.textContent = 'Game Over'
+                //         clearInterval(invaderId)
+                //     }
+                // }
 
 
-            //     if (enemysKilled.length === enemyInvaders.length) {
-            //         confirmedKills.textContent = 'You Win'
-            //         clearInterval(invaderId)
-            //     }
-            // }
+                if (enemysKilled.length === enemyInvaders.length) {
+                    confirmedKills.textContent = 'You Win'
+                    clearInterval(invaderId)
+                }
+            }
 
-            // invaderId = setInterval(moveInvaders, 75)
+            invaderId = setInterval(moveInvaders, 75)
             motherShipId = setInterval(moveMotherShip, 100 )
             
             function shoot(e) {
