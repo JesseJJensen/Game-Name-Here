@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {    //created DOM event listener all JS code will go in here
     const grid = document.querySelector('.grid') // created query selector  for div's 
     const confirmedKills = document.querySelector('#result') //Using # for Id instead of dot
+    const endGame = document.querySelector('#endGame')
+    const startBtn = document.querySelector('#button')
     let screenWidth = 30 // Let js know we want width of grid to be 15
     let playerOneLocation = 404 // this is where player 1 shooter will start
     let enemyLocation = 0 // this is where the enemy boxes will start
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     let motherShipId
 
     // will add divs now instead of listing them all
-    for (let i = 0; i < 420; i++) {
+    for (let i = 0; i < 900; i++) {
         const square = document.createElement('div')
         grid.appendChild(square)
       }
@@ -151,7 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
             }
             //set speed of enemy     
             invaderId = setInterval(moveInvaders, 500)
-            motherShipId = setInterval(moveMotherShip, 1000 )
+            motherShipId = setInterval(moveMotherShip, 1000)
+
+
+
            // creates a laser to shoot enemy ships 
             function shoot(e) {
                 let laserId
@@ -185,20 +190,13 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                 //asssignes moveLaser Function to spacebar
                 switch(e.keyCode) { 
                     case 32:
-                        laserId = setInterval(moveLaser,200)
+                        laserId = setInterval(moveLaser, 75)
                         break
                 }
              
             }
-
-
-
             document.addEventListener('keyup', shoot)
     })
-
-    
-
-
 
 
 

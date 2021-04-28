@@ -1,70 +1,61 @@
-/* makking the box  */
-
-
-
-.grid { 
+ /* makking the box   */
+ .grid { 
     display: flex;
     flex-wrap: wrap;
     border: solid black 5px;
     width: 600px;
-    height: 300px;
-}
+    height: 600px;
+    background: url(./spacebackground2.png);
+    animation: scroll-background 5s linear infinite;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+} 
 
-/* sizing the 900 divs */
-.grid div {
+@keyframes scroll-background {
+    from {
+      background-position-y: 0px;
+    }
+    to {
+      background-position-y: 322px;
+    }
+  }
+
+ /* sizing the 900 divs  */
+ .grid div {
     width: 20px;
     height: 20px;
-    /* border: solid black 1px; */
-    /* padding: 2px 0px 2px 0px; */
-}
+} 
 
 
-.shooter {  
+
+ .shooter {  
 
     background-image: url(./SpaceInvaderImages/dragon.png);
     background-size: cover;
-    /* position: absolute; */
-    /* width: 60px;
-    height: 45px;
-    left: 220px;
-    bottom: 100px; */
-
-    /* background-color: green;
-    border: solid green 0px; */
-    /* border-left: solid black 20px;
-    border-right: solid black 20px; */
 
 }
 
 .motherShip {
-    background-image: url('./SpaceInvaderImages/satelite.png');
+    background-image: url('./enemy-red-4.png');
     background-size: cover;
-    /* background-color: black;
-    border-top: solid white 5px; */
 
 }
 
 .invader {
-    background-image: url('./SpaceInvaderImages/alienMonster2.png');
+    background-image: url('./enemy-green-1.png');
     background-size: cover;
-
-	/* background-color: blue;
-    border-top: solid white 5px; */
-    /* border:black solid 1px;  */
 }
 
 .boom{
     background-image: url('./SpaceInvaderImages/boom.png');
     background-size: cover;
-    /* background-color: red; */
 }
 
 .laser {
 
-    background-image: url('./SpaceInvaderImages/fire.png');
+    background-image: url('./laser-red-8.png');
     background-size: cover;
-    /* background-color: Yellow;
-    border-radius: 30px; */
+    
 }
 
 body {
@@ -80,4 +71,5 @@ body {
         width: 900px;
         height: 450px;
       }
-  }
+  } 
+
