@@ -1,4 +1,8 @@
-.grid {
+/* makking the box  */
+
+
+
+.grid { 
     display: flex;
     flex-wrap: wrap;
     border: solid black 5px;
@@ -6,6 +10,7 @@
     height: 300px;
 }
 
+/* sizing the 900 divs */
 .grid div {
     width: 20px;
     height: 20px;
@@ -13,32 +18,53 @@
     /* padding: 2px 0px 2px 0px; */
 }
 
-.shooter { 
-    background-color: green;
-    border: solid green 0px;
+
+.shooter {  
+
+    background-image: url(./SpaceInvaderImages/dragon.png);
+    background-size: cover;
+    /* position: absolute; */
+    /* width: 60px;
+    height: 45px;
+    left: 220px;
+    bottom: 100px; */
+
+    /* background-color: green;
+    border: solid green 0px; */
     /* border-left: solid black 20px;
     border-right: solid black 20px; */
 
 }
 
 .motherShip {
-    background-color: black;
-    border-top: solid white 5px;
+    background-image: url('./SpaceInvaderImages/satelite.png');
+    background-size: cover;
+    /* background-color: black;
+    border-top: solid white 5px; */
+
 }
 
 .invader {
-	background-color: blue;
-    border-top: solid white 5px;
+    background-image: url('./SpaceInvaderImages/alienMonster2.png');
+    background-size: cover;
+
+	/* background-color: blue;
+    border-top: solid white 5px; */
     /* border:black solid 1px;  */
 }
 
 .boom{
-    background-color: red;
+    background-image: url('./SpaceInvaderImages/boom.png');
+    background-size: cover;
+    /* background-color: red; */
 }
 
 .laser {
-    background-color: Yellow;
-    border-radius: 30px;
+
+    background-image: url('./SpaceInvaderImages/fire.png');
+    background-size: cover;
+    /* background-color: Yellow;
+    border-radius: 30px; */
 }
 
 body {
@@ -46,8 +72,12 @@ body {
     align-items: center;
 }
 
-/* @media screen and (min-width: 800px) {
-    .body {
-      align-items: center;
-    }
-  } */
+  @media screen and (min-width: 992px) {
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        border: solid black 5px;
+        width: 900px;
+        height: 450px;
+      }
+  }

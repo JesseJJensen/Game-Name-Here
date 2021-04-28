@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     const enemyInvaderMotherShip = [2,3,4]
     const enemyInvaders = [
         //  0,2,4,6,8,
-        30,32,34,36,   40,42,44,   48,50,52,54,
-        60,62,64,66,   70,72,74,   78,80,82,84,
-        90,92,94,96,   100,102,104,   108,110,112,114
+         30,32,34,36,38,45,47,49,51,53,
+        // 60,62,64,66,68, 
+        // 75,77,79,81,83,
+        // 90,92,94,96,98,
+        // 105,107,109,111,113
     ]
     // draws enemy invaders- for each item in the array we will call invader 
     // I will pass this through the squares and any current index value there might be; 0 in this case
@@ -49,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     // enemyInvaderMotherShip.forEach( invader => boxes[enemyMotherShipLocation + invader].classList.add('motherShip'))
     // enemyInvaders.forEach( invader => boxes[enemyLocation + invader].classList.add('invader'))
 
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-      }
+    // function getRandomInt(min, max) {
+    //     min = Math.ceil(min);
+    //     max = Math.floor(max);
+    //     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    //   }
 
         
         boxes[playerOneLocation].classList.add('shooter') // Using classList.add to style player
@@ -150,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                 }
             }
             //set speed of enemy     
-            invaderId = setInterval(moveInvaders, 500)
-            motherShipId = setInterval(moveMotherShip, 1000 )
+            invaderId = setInterval(moveInvaders, 250)
+            motherShipId = setInterval(moveMotherShip, 100 )
            // creates a laser to shoot enemy ships 
             function shoot(e) {
                 let laserId
@@ -185,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                 //asssignes moveLaser Function to spacebar
                 switch(e.keyCode) { 
                     case 32:
-                        laserId = setInterval(moveLaser,200)
+                        laserId = setInterval(moveLaser,100)
                         break
                 }
              
