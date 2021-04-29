@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     const confirmedKills = document.querySelector('#result') //Using # for Id instead of dot
     const endGame = document.querySelector('#endGame')
     const startBtn = document.querySelector('#button')
-    let screenWidth = 30 // Let js know we want width of grid to be 15
-    let playerOneLocation = 404 // this is where player 1 shooter will start
+    let screenWidth = 20 // Let js know we want width of grid to be 15
+    let playerOneLocation = 202 // this is where player 1 shooter will start
     let enemyLocation = 0 // this is where the enemy boxes will start
-    let enemyMotherShipLocation = 0//getRandomInt(3, 27) //this is using math function below to create random location at start of game
+    let enemyMotherShipLocation = 0 //this is using math function below to create random location at start of game
     let enemysKilled = [] // this will count every time you killl enemy box ship
     let result = 0 // starting score enemys killed will increase result
     let directionMovement = 1 // tells each box ship how far it can move 
@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     let invaderId 
     let motherShipId
 
+    
+
     // will add divs now instead of listing them all
-    for (let i = 0; i < 900; i++) {
+    for (let i = 0; i < 400; i++) {
         const square = document.createElement('div')
         grid.appendChild(square)
       }
@@ -23,12 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
       const boxes = Array.from(document.querySelectorAll('.grid div'))
     
     //Defines the enemy invdaders on how they will appear in the array
-    const enemyInvaderMotherShip = [2,3,4]
+    const enemyInvaderMotherShip = [1,3,5]
     const enemyInvaders = [
-        //  0,2,4,6,8,
-        30,32,34,36,   40,42,44,   48,50,52,54,
-        60,62,64,66,   70,72,74,   78,80,82,84,
-        90,92,94,96,   100,102,104,   108,110,112,114
+        0,2,4,6,   10,12,14,16, 
+        20,22,24,26,   30,32,34,36,
+        //30,32,34,36,  48,50,52,54,
+        //   60,62,64,66,   70,72,74,   78,80,82,84,
+        //   90,92,94,96,   100,102,104,   108,110,112,114
     ]
     // draws enemy invaders- for each item in the array we will call invader 
     // I will pass this through the squares and any current index value there might be; 0 in this case
@@ -51,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
     // enemyInvaderMotherShip.forEach( invader => boxes[enemyMotherShipLocation + invader].classList.add('motherShip'))
     // enemyInvaders.forEach( invader => boxes[enemyLocation + invader].classList.add('invader'))
 
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-      }
+    // function getRandomInt(min, max) {
+    //     min = Math.ceil(min);
+    //     max = Math.floor(max);
+    //     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    //   }
 
         
         boxes[playerOneLocation].classList.add('shooter') // Using classList.add to style player
@@ -150,10 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                     confirmedKills.textContent = 'You Win'
                     clearInterval(invaderId)
                 }
+
+                
             }
             //set speed of enemy     
             invaderId = setInterval(moveInvaders, 500)
-            motherShipId = setInterval(moveMotherShip, 1000)
+
+            motherShipId = setInterval(moveMotherShip, 500)
+            // motherShipId = setInterval(moveMotherShip, 500)
+            
 
 
 
@@ -171,8 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                         boxes[currentLaserIndex].classList.remove('laser')//remove laser style
                         boxes[currentLaserIndex].classList.remove('invader')//remove invader style
                         boxes[currentLaserIndex].classList.add('boom') // create boom
+                        const audio = new Audio("sound/sfx-boom.m4a");
+                        audio.play();
 
-                        setTimeout(() => boxes[currentLaserIndex].classList.remove('boom'), 250)// so the boom doesnt happen to fast set delay
+                        setTimeout(() => boxes[currentLaserIndex].classList.remove('boom'), 250)// so the boom doesnt happen too fast set delay
                         clearInterval(laserId)
                         //This is adding up kills and displaying them at the
                         const alienTakenDown = enemyInvaders.indexOf(currentLaserIndex)
@@ -180,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                         result++
                         confirmedKills.textContent = result 
                     }
+                    
                     // this will stop laser from leaving the box if it misses enemy
                     if(currentLaserIndex < screenWidth) {
                         clearInterval(laserId)
@@ -187,10 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {    //created DOM event lis
                     }  
                 
                 }
+                
                 //asssignes moveLaser Function to spacebar
                 switch(e.keyCode) { 
                     case 32:
                         laserId = setInterval(moveLaser, 75)
+                        const audio = new Audio("sound/sfx-laser.m4a");
+                        audio.play();
                         break
                 }
              

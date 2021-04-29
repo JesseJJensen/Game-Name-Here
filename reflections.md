@@ -34,9 +34,9 @@
 - [x] What did you achieve yesterday?
 - [x] What are your goals for today?
 - [x] Do you have any blockers?
-1. RESPONSE
-2. RESPONSE
-3. RESPONSE
+1. Finished the games logic.
+2. Style the game and get it online.
+3. No blockers.
 
 # Friday
 - [x] What did you achieve yesterday?

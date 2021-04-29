@@ -1,20 +1,20 @@
 
-  /* html,
+html,
 body {
   height: 100%;
   overflow: hidden;
-} */
+} 
 
-/* body {
+ body {
   margin: 0;
   font: 16px sans-serif;
-} */
+} 
 
-/* .wrap {
+.wrap {
   display: flex;
   flex-direction: column;
   height: 100%; 
-} */
+} 
 
 header {
     text-align: center;
@@ -31,13 +31,13 @@ header {
     color: white;
   }
   
-  /* .game-wrapper {
+  .game-wrapper {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #222;
-  } */
+  }
   .game {
     width: 800px;
     height: 600px;
@@ -47,39 +47,39 @@ header {
     position: relative;
   }
   
-  /* @keyframes scroll-background {
+  @keyframes scroll-background {
     from {
       background-position-y: 0px;
     }
     to {
       background-position-y: 322px;
     }
-  } */
+  }
   
-  /* .game .enemy {
+ .game .enemy {
     position: absolute;
     margin-left: -20px;
     margin-top: -18px;
     width: 40px;
-  } */
+  } 
   
   .game .player {
     position: absolute;
     margin-left: -20px;
     width: 40px;
   }
-  /* 
+  
   .game .laser { 
     position: absolute;
     margin-left: -2.5px;
     height: 30px;
-  } */
-  /* 
+  }
+  
   .game .enemy-laser {
     position: absolute;
     margin-left: -2.5px;
     height: 30px;
-  } */
+  }
   
   .congratulations {
     display: none;
@@ -105,7 +105,7 @@ header {
     animation: pop-in 1s;
   }
   
-  /* .btn {
+  .btn {
     border: 2px solid #36bbf5;
     border-radius: 3px;
     box-shadow: 0 2px rgba(0, 0, 0, 0.15);
@@ -118,8 +118,9 @@ header {
     );
     padding: 10px 40px;
     font: 14px sans-serif;
-  } */
-  /* @keyframes pop-in {
+  } 
+
+   @keyframes pop-in {
     0% {
       opacity: 0;
       transform: translate(0, -100px);
@@ -133,5 +134,5 @@ header {
     100% {
       transform: translate(0, 0);
     }
-  } */
+  }
   
